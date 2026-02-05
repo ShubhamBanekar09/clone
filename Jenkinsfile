@@ -1,16 +1,14 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+    tools {
+        maven 'Maven-3.9.6'
+    }
 
+    stages {
         stage('Build') {
             steps {
-                echo 'Build started'
+                bat 'mvn clean install'
             }
         }
     }
