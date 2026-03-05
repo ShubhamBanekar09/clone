@@ -1,15 +1,15 @@
 pipeline {
-    agent any
-
-    tools {
-        maven 'Maven-3.9.6'
-    }
-
+ agent any
     stages {
-        stage('Build') {
-            steps {
-                bat 'mvn clean install'
-            }
+             stage('Build Docker Image') {
+    steps {
+            bat 'docker build -t ShubhamBanekar09 .' 
+        }
+    }
+    stage('Run Container') {
+        steps {
+                bat 'docker run -d -p 8080:80 ShubhamBanekar09' 
+                }
         }
     }
 }
